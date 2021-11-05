@@ -26,10 +26,9 @@ def _download_coin_data(coin, timePeriod):
         # nested_lists = cg.get_coin_market_chart_by_id(
         #            id=coin, vs_currency="usd", days=timePeriod
         nested_lists = cg.get_coin_market_chart_range_by_id(
-                id=coin, vs_currency="usd", from_timestamp=, to_timestamp=
+                id=coin, vs_currency="usd", from_timestamp=1635945880, to_timestamp=1636032280
 
         )
-        print(nested_lists)
         prices = nested_lists['prices']
         market_caps = nested_lists['market_caps']
         total_volumes = nested_lists['total_volumes']
@@ -52,6 +51,7 @@ def _download_coin_data(coin, timePeriod):
             entry["Price"] = price_tuple[1]        
             entry["Market_Cap"] = marketc_tuple[1]
             entry["Total_Volume"] = vol_tuple[0]
+            entry["Source"] = "CoinGeckoAPI"
             yield json.dumps(entry)
         
 
